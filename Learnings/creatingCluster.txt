@@ -1,0 +1,24 @@
+https://aws.amazon.com/getting-started/hands-on/break-monolith-app-microservices-ecs-docker-ec2/module-two/
+1. Create an Amazon ECS cluster deployed behind an Application Load Balancer.
+go to cloud formation
+https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks?filteringText=&filteringStatus=active&viewNested=true&hideStacks=false
+
+a. Create stack.
+
+b. Select Upload a template file and choose the ecs.yml file from the GitHub project at 
+amazon-ecs-nodejs-microservice/2-containerized/infrastructure/ecs.yml then select Next.
+
+
+c. For the stack name, enter BreakTheMonolith-Demo. Verify that the other parameters have the following values:
+Desired Capacity = 2
+InstanceType = t2.micro
+MaxSize = 2
+
+d. Select Next.
+
+e. On the Configure stack options page, keep the default options and scroll down and select Next.
+
+f. On the Review BreakTheMonolith-Demo page scroll to the bottom of the page, acknowledge the Capabilities statement by selecting the checkbox, and select Create stack.
+You will see your stack with the status CREATE_IN_PROGRESS. You can select the refresh button at the top right of the screen to check on the progress. This process typically takes under 5 minutes.
+
+

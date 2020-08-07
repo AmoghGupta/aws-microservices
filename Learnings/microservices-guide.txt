@@ -1,0 +1,136 @@
+
+https://aws.amazon.com/getting-started/hands-on/break-monolith-app-microservices-ecs-docker-ec2/module-four/
+Objective: Deploying each individual service as micro services:
+
+v1/posts, v1/threads, v1/users
+--------------------------------------------------------------------------
+1. Create repositories for pushing the docker images:
+--------------------------------------------------------------------------
+https://console.aws.amazon.com/ecr/repositories?region=us-east-1
+
+
+--------------------------------------------------------------------------
+2. Autheticate docker in terminal.
+--------------------------------------------------------------------------
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 737935379124.dkr.ecr.us-east-1.amazonaws.com
+
+--------------------------------------------------------------------------
+3. build and push images to the repositories: (do the same for threads and users as well):
+--------------------------------------------------------------------------
+Build:
+docker build -t posts ./posts
+docker build -t threads ./threads
+docker build -t users ./users
+Tag:
+docker tag posts:latest 737935379124.dkr.ecr.us-east-1.amazonaws.com/posts:v1
+docker tag threads:latest 737935379124.dkr.ecr.us-east-1.amazonaws.com/threads:v1
+docker tag users:latest 737935379124.dkr.ecr.us-east-1.amazonaws.com/users:v1
+Push:
+docker push 737935379124.dkr.ecr.us-east-1.amazonaws.com/posts:v1
+docker push 737935379124.dkr.ecr.us-east-1.amazonaws.com/threads:v1
+docker push 737935379124.dkr.ecr.us-east-1.amazonaws.com/users:v1
+
+--------------------------------------------------------------------------
+4. Write task definitions:
+uses Docker images in task definitions to launch containers on Amazon EC2 instances
+--------------------------------------------------------------------------
+Now go to your cluster and create task definitions
+https://us-east-1.console.aws.amazon.com/ecs/home?region=us-east-1#/taskDefinitions
+
+create taskDefinitions for posts, threads and users.
+
+
+
+--------------------------------------------------------------------------
+5. Configure the application load balancers;
+--------------------------------------------------------------------------
+https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LoadBalancers:sort=loadBalancerName
+
+go to load balancer and select it from there you will get the vpc. 
+You will need the VPC attribute when you configure the target groups.
+
+vpc-0209180eb6fec3961
+
+--------------------------------------------------------------------------
+6. Configure the Target Groups
+--------------------------------------------------------------------------
+https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#TargetGroups:
+create target group for each service:
+posts, threads, users
+
+
+
+--------------------------------------------------------------------------
+7. Configure the listener rules:
+--------------------------------------------------------------------------
+The listener checks for incoming connection requests to your ALB in order to route traffic appropriately.
+go to :https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LoadBalancers:sort=loadBalancerName
+select load balacner,
+Navigate to listeners,
+edit rules and define your routes
+Insert the rules in the following order:
+api: /api* forwards to api
+users: /api/users* forwards to users
+threads: /api/threads* forwards to threads
+posts: /api/posts* forwards to posts
+
+path is mapped to target groups.
+
+
+
+--------------------------------------------------------------------------
+8. Create and deploy your microservices:
+--------------------------------------------------------------------------
+Deploy the three microservices (posts, threads, and users) to your cluster. Repeat these steps for each of your three microservices.
+
+go to your clusters
+https://console.aws.amazon.com/ecs/home?region=us-east-1#/clusters
+
+select the cluster,
+go to services tab,
+create a service,
+
+
+--------------------------------------------------------------------------
+9. Switch traffic to microservices:
+--------------------------------------------------------------------------
+Go to load balacner, listener tab and make appropraite route changes.
+
+
+
+
+--------------------------------------------------------------------------
+10.
+Disable the monolith:
+--------------------------------------------------------------------------
+Navigate back to the Amazon ECS cluster.
+In the Services tab, select the checkbox next to api and select Update.
+On the Configure service page, locate Number of tasks and enter 0.
+Select Skip to review.
+Select Update Service.
+
+
+
+--------------------------------------------------------------------------
+11. Validate deployment:
+--------------------------------------------------------------------------
+Find your service URL: This is the same URL that you used in Module 2 of this tutorial.
+
+Navigate to the Load Balancers section of the EC2 console.
+Select the checkbox next to demo to see the Load Balancer details.
+In the Description tab, locate the DNS name and select the copy icon at the end of the URL. 
+Paste the DNS name into a new browser tab or window.
+You should see a message 'Ready to receive requests'.
+
+See the values for each microservice: Your ALB routes traffic based on the request URL. To see each service, simply add the service name to the end of your DNS name:
+
+http://[DNS name]/api/users
+http://[DNS name]/api/threads
+http://[DNS name]/api/posts
+
+
+
+--------------------------------------------------------------------------
+12. Clean up
+--------------------------------------------------------------------------
+Remove everything we have done.

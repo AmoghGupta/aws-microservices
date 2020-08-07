@@ -1,0 +1,36 @@
+=================================
+S3
+=================================
+Amazon S3 or Amazon Simple Storage Service is a service offered by Amazon Web Services that provides object storage 
+through a web service interface. 
+Amazon S3 uses the same scalable storage infrastructure that Amazon.com uses to run its global e-commerce network.
+
+
+AWS Storage Gateway is a hybrid cloud storage service that gives you on-premises access to virtually unlimited cloud storage.
+
+
+====================================
+EFS- Elastic file system
+====================================
+Store files at a common place so that its accessible across organizations shared across regions.
+Linux based system storage.
+
+====================================
+EBS- Elastic Block Storage
+====================================
+This is EC2 memory.
+
+===================
+GLACIER
+===================
+S3 Glacier. Mostly for huge data/historical data. Latency is high. Not a daily usage data.
+
+===================
+SNOWBALL
+===================
+Snowball is a petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data into and out of the AWS cloud. 
+Using Snowball addresses common challenges with large-scale data transfers including high network costs, long transfer times, and security concerns.
+
+
+
+

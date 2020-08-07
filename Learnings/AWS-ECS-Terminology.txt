@@ -1,0 +1,51 @@
+ECS is essentially the AWS implementation of Docker and Containers
+
+1. ECS - Elastic Container service.
+Amazon Elastic Container Service (ECS) is a cloud computing service in Amazon Web Services (AWS) 
+that manages containers and allows developers to run applications in the cloud without having to configure an environment 
+for the code to run in.
+
+2. ECS Clusters:
+An Amazon ECS cluster is a logical grouping of tasks or services. 
+If you are running tasks or services that use the EC2 launch type, a cluster is also a grouping of container instances.
+
+3. EC2  - Elastic Compute Cloud- is a Service 
+Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud.
+It is designed to make web-scale cloud computing easier for developers. 
+EC2 Machines are like our desktops/systems.
+
+4. ECS container instances: (each ec2 machine is called an instance)
+Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent and has been 
+registered into an Amazon ECS cluster.
+
+5. Amazon ECS container agent: (connection b/w cluster and instance)
+The Amazon ECS container agent is a software that AWS has developed for its Amazon EC2 Container Service that allows
+container instances to connect to your clusters.
+
+6. Repositories:
+A repository is the fundamental version control object in CodeCommit. It's where you securely store code and files for your project.
+
+7. Task Definitions -Amazon ECS Task definitions. 
+Amazon ECS uses Docker images in task definitions to launch containers on Amazon EC2 instances in your clusters.
+A task definition is required to run Docker containers in Amazon ECS.
+
+
+8. Application Load Balancer (ALB):
+The Application Load Balancer is a feature of Elastic Load Balancing(ELB) that allows a developer to configure and route incoming end-user 
+traffic to applications based in the Amazon Web Services (AWS) public cloud.
+
+9. Target Groups:
+A target group allows traffic to correctly reach a specified service.
+A target group tells a load balancer where to direct traffic to : EC2 instances, fixed IP addresses; or AWS Lambda functions, amongst others. 
+
+
+10. Listeners in Load balancer:
+The listener checks for incoming connection requests to your ALB in order to route traffic appropriately.
+
+
+
+VPC - Virtual private cloud
+Cloud formation
+
+
+
