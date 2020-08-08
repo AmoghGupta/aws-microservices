@@ -3,7 +3,7 @@ import psycopg2 as ps
 credentials = {'POSTGRES_ADDRESS' : 'test-db.cup5cgjgpmnt.ap-south-1.rds.amazonaws.com', # change to your endpoint
                'POSTGRES_PORT' : '5432', # change to your port
                'POSTGRES_USERNAME' : 'postgres', # change to your username
-               'POSTGRES_PASSWORD' : 'amogh_gupta15', # change to your password
+               'POSTGRES_PASSWORD' : 'abcdde', # change to your password
                'POSTGRES_DBNAME' : 'test-db'} # change to your db name
 # create connection and cursor    
 conn = ps.connect(host=credentials['POSTGRES_ADDRESS'],
